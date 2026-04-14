@@ -1,0 +1,52 @@
+definitions:
+  controller.GetMeResponse:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      role:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Testing Swagger APIs.
+  title: Gin + Postgres Back-end Swagger Documentation
+  version: "1.0"
+paths:
+  /api/version:
+    get:
+      consumes:
+      - application/json
+      description: Get the api version
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Api Version
+      tags:
+      - Api
+  /auth/me:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint returns the user information
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: '#/definitions/controller.GetMeResponse'
+      security:
+      - Bearer: []
+      summary: Get User Information
+      tags:
+      - Auth
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
